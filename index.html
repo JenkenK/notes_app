@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/app.js"></script>
+    <!-- <script src="https://kit.fontawesome.com/f62a0c1d0c.js" crossorigin="anonymous"></script> -->
+    <title>My Notes</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+</head>
+
+<header>
+    <h1>My Notes</h1>
+</header>
+
+<body>
+    <form id="new-note-form">
+        <div id="note wrapper">
+            <div>
+                <p>Note Type</p>
+                <select name="" id=""></select>
+            </div>
+            <div>
+                <label for="note-title">Title</label>
+                <input type="text" required>
+            </div>
+            <div>
+                <textarea name="note-text" id="note-text" cols="30" rows="8" maxlength="300"></textarea>
+            </div>
+            <div>
+                <p>Colour Tag</p>
+                <select name="note-colour" id="note-colour">
+                    <option value ="Colour Tag" disabled >Colour Tag</option>
+                    <option value ="None">None</option>
+                    <option value ="Red">🔴</option>
+                    <option value ="Orange">🟠</option>
+                    <option value ="Yellow">🟡</option>
+                    <option value ="Green">🟢</option>
+                    <option value ="Blue">🔵</option>
+                    <option value ="Purple">🟣</option>
+
+                </select>
+            </div>
+        </div>
+        <button id="add-note">Add Note</button>
+    </form>
+
+    <button id="delete-all">Delete All</button>
+
+</body>
+</html>
+
