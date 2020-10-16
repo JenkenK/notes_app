@@ -21,36 +21,40 @@
 <body>
     <form id="new-note-form">
         <div id="note wrapper">
-            <div>
+            <!-- <div>
                 <p>Note Type</p>
                 <select name="" id=""></select>
+            </div> -->
+            <div>
+                <label for="noteTitle">Title</label>
+                <input placeholder="Title" name="noteTitle" type="text" required>
             </div>
             <div>
-                <label for="note-title">Title</label>
-                <input type="text" required>
-            </div>
-            <div>
-                <textarea name="note-text" id="note-text" cols="30" rows="8" maxlength="300"></textarea>
+                <textarea placeholder="Note" name="noteText" id="note-text" cols="30" rows="8" maxlength="300"></textarea>
             </div>
             <div>
                 <p>Colour Tag</p>
-                <select name="note-colour" id="note-colour">
+                <select name="noteColour" id="note-colour">
                     <option value ="Colour Tag" disabled >Colour Tag</option>
                     <option value ="None">None</option>
-                    <option value ="Red">🔴</option>
-                    <option value ="Orange">🟠</option>
-                    <option value ="Yellow">🟡</option>
-                    <option value ="Green">🟢</option>
-                    <option value ="Blue">🔵</option>
-                    <option value ="Purple">🟣</option>
+                    <option value ="🔴">🔴</option>
+                    <option value ="🟠">🟠</option>
+                    <option value ="🟡">🟡</option>
+                    <option value ="🟢">🟢</option>
+                    <option value ="🔵">🔵</option>
+                    <option value ="🟣">🟣</option>
 
                 </select>
             </div>
         </div>
-        <button id="add-note">Add Note</button>
+        <button type='submit' id="add-note">Add Note</button>
     </form>
 
     <button id="delete-all">Delete All</button>
+
+    <div>
+        <ul id="notes-list"></ul>
+    </div>
 
 </body>
 </html>
