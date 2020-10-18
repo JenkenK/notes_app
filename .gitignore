@@ -1,1 +1,6 @@
 config.codekit3
+.firebaserc
+firebase.json
+.vscode
+.firebase
+404.html

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/app.js"></script>
-    <!-- <script src="https://kit.fontawesome.com/f62a0c1d0c.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/f62a0c1d0c.js" crossorigin="anonymous"></script>
     <title>My Notes</title>
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 
@@ -15,42 +15,55 @@
 </head>
 
 <header>
-    <h1>My Notes</h1>
+    <h1>Notes.</h1>
 </header>
 
 <body>
     <form id="new-note-form">
-        <div id="note wrapper">
+        <div>
             <!-- <div>
                 <p>Note Type</p>
                 <select name="" id=""></select>
             </div> -->
+            <section id="wrapperNoteColour">
+                <div id="title">
+                    <label for="noteTitle">Title:</label>
+                    <input placeholder="Title" name="noteTitle" type="text" required>
+                </div>
+                <div id="colourTag">
+                    <label for="colourTag">Colour Tag:</label>
+                    <select name="noteColour">
+                        <option value ="Colour Tag" disabled >Colour Tag</option>
+                        <option value ="None">None</option>
+                        <option value ="red">🔴 Red</option>
+                        <option value ="orange">🟠 Orange</option>
+                        <option value ="yellow">🟡 Yellow</option>
+                        <option value ="green">🟢 Green</option>
+                        <option value ="blue">🔵 Blue</option>
+                        <option value ="purple">🟣 Purple</option>
+                    </select>
+                </div>
+            </section>
             <div>
-                <label for="noteTitle">Title</label>
-                <input placeholder="Title" name="noteTitle" type="text" required>
+                <textarea placeholder="Note" name="noteText" id="note-text" cols="52" rows="8" maxlength="500"></textarea>
             </div>
-            <div>
-                <textarea placeholder="Note" name="noteText" id="note-text" cols="30" rows="8" maxlength="300"></textarea>
-            </div>
-            <div>
-                <p>Colour Tag</p>
-                <select name="noteColour" id="note-colour">
-                    <option value ="Colour Tag" disabled >Colour Tag</option>
-                    <option value ="None">None</option>
-                    <option value ="🔴">🔴</option>
-                    <option value ="🟠">🟠</option>
-                    <option value ="🟡">🟡</option>
-                    <option value ="🟢">🟢</option>
-                    <option value ="🔵">🔵</option>
-                    <option value ="🟣">🟣</option>
 
-                </select>
-            </div>
         </div>
         <button type='submit' id="add-note">Add Note</button>
+        <button type="button" id="delete-all">Delete All</button>
     </form>
 
-    <button id="delete-all">Delete All</button>
+    <label>Filter by:</label>
+    <select id="filter-by">
+        <option value ="Colour Tag" disabled >Colour Tag</option>
+        <option value ="None">None</option>
+        <option value ="red">🔴 Red</option>
+        <option value ="orange">🟠 Orange</option>
+        <option value ="yellow">🟡 Yellow</option>
+        <option value ="green">🟢 Green</option>
+        <option value ="blue">🔵 Blue</option>
+        <option value ="purple">🟣 Purple</option>
+    </select>
 
     <div>
         <ul id="notes-list"></ul>

@@ -5,15 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteAllButton = document.querySelector('#delete-all');
     deleteAllButton.addEventListener('click', handleDeleteAllClick);
 
+    const filterSelect = document.querySelector('#filter-by');
+    filterSelect.addEventListener('change', handleFilterChange);
+
     const persistedNotes = localStorage.getItem('notes');
 
     if (!persistedNotes){
         localStorage.setItem('notes', JSON.stringify({}))
     } else {
+        console.log('persistedNotes', persistedNotes)
         const notes = JSON.parse(persistedNotes)
+        console.log('notes', notes)
         const noteList = document.querySelector('#notes-list');
-        Object.keys(notes).forEach(key=>{
-            noteList.appendChild(createNote(notes[key]));
+        Object.values(notes).forEach(note=>{
+            noteList.appendChild(createNote(note));
         })
     }
 });
@@ -29,12 +34,19 @@ const createNote = function ({noteTitle, noteText, noteColour,noteID}) {
     const text = document.createElement('p');
     text.textContent = noteText;
     noteListItem.appendChild(text);
-  
-    const colour = document.createElement('div');
-    colour.textContent = noteColour;
-    noteListItem.appendChild(colour);
+
+
+    const deleteButton = document.createElement('button');
+    deleteButton.innerHTML = `<i class="fas fa-times"></i>`
+    deleteButton.setAttribute('class', 'delete-button')
+    deleteButton.onclick = () => handleDeleteClick(noteID)
+    noteListItem.appendChild(deleteButton);
+
+
     noteListItem.setAttribute('id', noteID)
-  
+    noteListItem.setAttribute('class', 'note')
+    noteListItem.setAttribute('data', noteColour)
+
     return noteListItem;
 }
 
@@ -43,7 +55,13 @@ const handleNewNoteFormSubmit = function (event) {
     const {target: {
         noteTitle:{
             value: noteTitle
-        }, noteText:{value:noteText}, noteColour:{value:noteColour}
+        }, 
+        noteText:{
+            value:noteText
+        }, 
+        noteColour:{
+            value:noteColour
+        }
     }} = event
     const noteDate = new Date()
     const noteID = noteDate.toString();
@@ -62,7 +80,42 @@ const handleNewNoteFormSubmit = function (event) {
 }
 
 const handleDeleteAllClick = function () {
-    const readingList = document.querySelector('#notes-list');
+    const readingNotesList = document.querySelector('#notes-list');
     localStorage.setItem('notes', JSON.stringify({}))
-    readingList.innerHTML = '';
+    readingNotesList.innerHTML = '';
+}
+
+const handleDeleteClick = function(noteID){
+    const buttonElement = document.getElementById(noteID)
+    buttonElement.remove()
+
+    const persistedNotes = JSON.parse(localStorage.getItem('notes'))
+
+    const { [noteID]: deletedNote, ...restOfNotes} = persistedNotes
+    localStorage.setItem('notes', JSON.stringify(restOfNotes))
+}
+
+const handleFilterChange = (event) => {
+    const value = event.target.value;
+    const readingNotesList = document.querySelector('#notes-list');
+    readingNotesList.innerHTML = '';
+    const persistedNotes = JSON.parse(localStorage.getItem('notes'))
+    if (value === 'None') {
+        return Object.values(persistedNotes).forEach(value=>{
+            console.log(value)
+            readingNotesList.appendChild(createNote(value));
+        })
+    }
+    Object.values(persistedNotes).filter((note) => note.noteColour === value).forEach(filteredNote=>{
+        readingNotesList.appendChild(createNote(filteredNote));
+    })
+}
+
+const handleFilterByOldNew = function(){
+}
+
+const handleFilterByNewOld = function(){
+}
+
+const handleFilterByAlphabetical = function(){
 }
